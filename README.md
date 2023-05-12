@@ -1,4 +1,4 @@
-### Codeally
+### Codeally - Projeto de inovação tecnológica.
 > Bem vindo(a) ao repositório do projeto.
 
 - Neste projeto, estamos buscando explorar novas ideias e soluções inovadoras utilizando a tecnologia como base. Nosso objetivo é criar um produto ou serviço que possa impactar positivamente a sociedade e trazer benefícios para a comunidade.
