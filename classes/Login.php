@@ -45,10 +45,11 @@
                 
                 // 02 - Iniciando sessão do usuário.
                 if($this->rememberMe){
-                    setcookie("user_uuid", $user_uuid, strtime("+1 year"));
+                    setcookie("user_uuid", $user_uuid, strtotime("+1 year"));
                 } else {
                     $_SESSION['user_uuid'] = $user_uuid;
                 }
+                throw new Exception("Logado com sucesso.");
             }catch(Exception $e){
                 return $e->getMessage();
             }

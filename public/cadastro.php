@@ -18,8 +18,9 @@
         $username = $_POST['username'];
         $email = $_POST['email'];
         $password = $_POST['password'];
+        $account_type = isset($_POST['account_type']) ? $_POST['account_type'] : '';
 
-        $cadastro = new Cadastro($name, $username, $email, $password);
+        $cadastro = new Cadastro($name, $username, $email, $password, $account_type);
         try{
             $message = $cadastro->cadastrar();
         } catch(Exception $e) {
@@ -33,19 +34,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CADASTRO</title>
+    <link rel="stylesheet" href="../assets/cadastro.php/style.css">
+    <title>CodeAlly - Cadastro</title>
 </head>
 <body>
-<form method="post">
-        <label for="name">Nome:</label>
-        <input type="text" name="name">
-        <label for="username">Usuário:</label>
-        <input type="text" name="username">
-        <label for="email">Email:</label>
-        <input type="text" name="email">
-        <label for="password">Senha:</label>
-        <input type="password" name="password">
-        <button type="submit">Cadastrar</button>
+    <form method="post">
+        <label for="name">Nome:</label><br>
+        <input type="text" name="name" value="<?php if (!empty($_POST['name'])) { echo $_POST['name']; } ?>"><br>
+        <label for="username">Usuário:</label><br>
+        <input type="text" name="username" value="<?php if (!empty($_POST['username'])) { echo $_POST['username']; } ?>"><br>
+        <label for="email">Email:</label><br>
+        <input type="text" name="email" value="<?php if (!empty($_POST['email'])) { echo $_POST['email']; } ?>"><br>
+        <label for="password">Senha:</label><br>
+        <input type="password" name="password"><br><br>
+        <label for="account_type">Selecione o tipo de conta:</label>
+        <select name="account_type">
+            <option value="1">Usuário</option>
+            <option value="2">Freelancer</option>
+        </select><br><br>
+        <button type="submit">Cadastrar</button><br><br>
     </form>
     <a href="login.php">Fazer login</a>
     <?php if (!empty($message)): ?>

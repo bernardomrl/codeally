@@ -1,40 +1,40 @@
 <?php
-    // 01 - Iniciando sessão.
     session_start();
     // 01.1 - Verificando se existe o cookie "user_uuid".
     if(isset($_COOKIE['user_uuid'])){ // Se existir um cookie, passar o valor para a session.
         $_SESSION['user_uuid'] = $_COOKIE['user_uuid'];
     }
     // 01.2 - Verificando se existe o valor na session.
-    if(!isset($_SESSION['user_uuid'])){ // Se não existir um uuid na session, o usuario não está logado.
-        header("Location: login.php");
+    if(isset($_SESSION['user_uuid'])){
+        $user_uuid = $_SESSION['user_uuid'];
     }
-    // teste
-    $user_uuid = $_SESSION['user_uuid'];
-    $bd = new mysqli("localhost", "root", "", "codeally");
-    $stmt = $bd->prepare("SELECT name FROM user_profile WHERE uuid = ?");
-    $stmt->bind_param("s", $user_uuid);
+
+    $con = new mysqli('localhost', 'root', '', 'codeally');
+    $stmt = $con->prepare('SELECT name, account_type FROM user_profile WHERE uuid = ?');
+    $stmt->bind_param('s', $user_uuid);
     $stmt->execute();
-    $stmt->bind_result($name);
-    $stmt->fetch();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
     $stmt->close();
-    $bd->close();
+    $con->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INDEX</title>
+    <title>CodeAlly - Início</title>
 </head>
 <body>
-    <?php if (!empty($name)): ?>
-        <p>Bem vindo(a), <?php echo $name;?>.</p>
-        <form action="../helpers/endsession.php">
-            <button type="submit">Deslogar</button>
-        </form>
-        <a href="sessionmanager.php">Verificar dados na session</a>
+    <?php if (!empty($user['name'])): ?>
+        <p>Bem vindo(a) <?php echo explode(" ", $user['name'])[0];?>.</p>
+        <a href="profile.php">Perfil</a>
+        <a href="../helpers/logout.php">Sair</a>
+    <?php else: ?>
+        <a href="cadastro.php">Cadastrar</a>
+        <a href="login.php">Logar</a>
     <?php endif; ?>
 </body>
 </html>

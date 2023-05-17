@@ -13,17 +13,24 @@
     require_once("../classes/Login.php");
     // 03 - Passando parâmetros para a classe.
     $message = ""; // Variável para armazenar a mensagem
-    if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $login = $_POST['login'];
-        $password = $_POST['password'];
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $login = isset($_POST['login']) ? $_POST['login'] : '';
+        $password = isset($_POST['password']) ? $_POST['password'] : '';
         $rememberMe = isset($_POST['rememberMe']);
-
-        $login = new Login($login, $password, $rememberMe);
-
-        try{
-            $message = $login->logar();
-        } catch(Exception $e) {
-            $message = $e->getMessage();
+    
+        if (!empty($login) && !empty($password)) {
+            // Os campos de login e senha estão preenchidos, continuar com o processo de login.
+            $loginObject = new Login($login, $password, $rememberMe);
+    
+            try {
+                $message = $loginObject->logar();
+            } catch (Exception $e) {
+                $message = $e->getMessage();
+            }
+        } else {
+            // Os campos de login e/ou senha estão vazios, exibir uma mensagem de erro.
+            $message = "Por favor, preencha todos os campos.";
         }
     }
 ?>
@@ -33,17 +40,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN</title>
+    <title>CodeAlly - Login</title>
 </head>
 <body>
     <form method="post">
-        <label for="login">Login:</label>
-        <input type="text" name="login">
-        <label for="password">Senha:</label>
-        <input type="password" name="password">
+        <label for="login">Login:</label><br>
+        <input type="text" name="login" value="<?php if (!empty($_POST['login'])) { echo $_POST['login']; } ?>"><br>
+        <label for="password">Senha:</label><br>
+        <input type="password" name="password"><br><br>
         <label for="rememberMe">Lembrar de mim:</label>
-        <input type="checkbox" name="rememberMe">
-        <button type="submit">Logar</button>
+        <input type="checkbox" name="rememberMe"><br><br>
+        <button type="submit">Logar</button><br><br>
     </form>
     <a href="cadastro.php">Fazer cadastro</a>
     <?php if (!empty($message)): ?>
