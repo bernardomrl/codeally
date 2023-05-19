@@ -10,7 +10,7 @@
         header("Location: index.php");
     }
     // 02 - Importando classe para o código.
-    require_once("../classes/Cadastro.php");
+    require_once("../classes/Register.php");
     // 03 - Passando parâmetros para a classe.
     $message = ""; // Variável para armazenar a mensagem
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -20,9 +20,9 @@
         $password = $_POST['password'];
         $account_type = isset($_POST['account_type']) ? $_POST['account_type'] : '';
 
-        $cadastro = new Cadastro($name, $username, $email, $password, $account_type);
+        $cadastro = new Register($name, $username, $email, $password, $account_type);
         try{
-            $message = $cadastro->cadastrar();
+            $message = $cadastro->register();
         } catch(Exception $e) {
             $message = $e->getMessage();
         }

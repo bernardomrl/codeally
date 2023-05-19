@@ -24,7 +24,7 @@
             $loginObject = new Login($login, $password, $rememberMe);
     
             try {
-                $message = $loginObject->logar();
+                $message = $loginObject->login();
             } catch (Exception $e) {
                 $message = $e->getMessage();
             }

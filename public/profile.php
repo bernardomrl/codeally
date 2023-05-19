@@ -1,12 +1,51 @@
 <?php
     session_start();
-    if(isset($_COOKIE['user_uuid'])){
+    if(isset($_COOKIE['user_uuid']))
+    {
         $_SESSION['user_uuid'] = $_COOKIE['user_uuid'];
     }
-    if(!isset($_SESSION['user_uuid'])){
+    if(!isset($_SESSION['user_uuid']))
+    {
         header("Location: index.php");
     }
+
+    require_once("../classes/Profile.php");
+
+    $message = "";
+
+    $user_uuid = $_SESSION['user_uuid'];
+    $profile = new Profile($user_uuid);
+    $user = $profile->getProfile();
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST')
+    {
+        $name = isset($_POST['name']) ? $_POST['name'] : '';
+        $username = isset($_POST['username']) ? $_POST['username'] : '';
+        $email = isset($_POST['email']) ? $_POST['email'] : '';
+        $age = isset($_POST['idade']) ? $_POST['idade'] : '';
+        $password = isset($_POST['password']) ? $_POST['password'] : '';
+        $password_change = isset($password);
+        $password_new = isset($_POST['password_new']) ? $_POST['password_new'] : '';
+        $password_new_confirm = isset($_POST['password_new_confirm']) ? $_POST['password_new_confirm'] : '';
+
+        $profile->setName($name);
+        $profile->setUsername($username);
+        $profile->setEmail($email);
+        $profile->setAge($age);
+        $profile->setPassword($password);
+        $profile->setPasswordChange($password_change);
+        $profile->setPasswordNew($password_new);
+        $profile->setPasswordNewConfirm($password_new_confirm);
+
+        try {
+            $message = $profile->updateProfile($user);
+        } catch (Exception $e) {
+            $message = $e->getMessage();
+        }
+    }
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,15 +56,6 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-        $user_uuid = $_SESSION['user_uuid'];
-        $con = new mysqli("localhost", "root", "", "codeally");
-        $stmt = $con->prepare('SELECT ua.username, ua.email, up.name, up.age FROM user_account ua JOIN user_profile up ON ua.uuid = up.uuid WHERE ua.uuid = ?');
-        $stmt->bind_param("s", $user_uuid);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
-    ?>
     <h3>Perfil - <?php echo explode(" ", $user['name'])[0]; ?></h3>
 
     <form method="POST">
@@ -41,13 +71,14 @@
         <div class="password-change hide">
             <label for="password">Digite a senha atual:</label><br>
             <input type="password" name="password"><br>
-            <label for="newpassword">Digite a nova senha:</label><br>
-            <input type="password" name="newpassword"><br>
-            <label for="password_confirm">Confirme a nova senha:</label><br>
-            <input type="password" name="newpassword_confirm"><br><br>
+            <label for="password_new">Digite a nova senha:</label><br>
+            <input type="password" name="password_new"><br>
+            <label for="password_new_confirm">Confirme a nova senha:</label><br>
+            <input type="password" name="password_new_confirm"><br><br>
         </div>
         <input type="submit" value="Atualizar">
     </form>
+    <a href="index.php">Voltar</a>
     <?php if (!empty($message)): ?>
         <p><?php echo $message;?></p>
     <?php endif; ?>
