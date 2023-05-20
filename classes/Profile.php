@@ -119,6 +119,11 @@
                         throw new Exception('A senha atual está incorreta.');
                     }
 
+                    if($this->password_new == $this->password)
+                    {
+                        throw new Exception('A nova senha deve ser diferente da senha atual.');
+                    }
+
                     if(strlen($this->password_new) < 8)
                     {
                         throw new Exception('A senha deve conter pelo menos 8 caracteres.');
@@ -142,10 +147,6 @@
                     if($this->password_new != $this->password_new_confirm)
                     {
                         throw new Exception('As senhas não coincidem.');
-                    }
-                    if($this->password_new == $this->password)
-                    {
-                        throw new Exception('A nova senha deve ser diferente da senha atual.');
                     }
 
                     $this->password_new = password_hash($this->password_new, PASSWORD_DEFAULT);

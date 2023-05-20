@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap');
+
+$poppins : 'Poppins',
+sans-serif;
+$roboto-mono : 'Roboto Mono',
+monospace;
+
+$background : #2c3338;
+$form-border: #434a52;
+$form-background : #282e33;
+$form-icon-background : #363b41;
+$form-icon-color : #606468;
+$form-input-background : #3b4148;
+$form-input-color : #a9a9a9;
+$form-submit-background : #ff6961;
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-transform: none;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1;
+    vertical-align: baseline;
+}

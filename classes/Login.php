@@ -60,8 +60,7 @@
 
                 $conn->close();
 
-                echo "Logado com sucesso. Redirecionando..<br><br>";
-                echo '<script>setTimeout(function() { window.location.href = "index.php"; }, 2500);</script>';
+                return "Logado com sucesso.";
                 
             }
             catch(Exception $e)

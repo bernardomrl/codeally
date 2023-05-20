@@ -1,40 +1,67 @@
 <?php
     session_start();
-    // 01.1 - Verificando se existe o cookie "user_uuid".
-    if(isset($_COOKIE['user_uuid'])){ // Se existir um cookie, passar o valor para a session.
+    if(isset($_COOKIE['user_uuid']))
+    {
         $_SESSION['user_uuid'] = $_COOKIE['user_uuid'];
     }
-    // 01.2 - Verificando se existe o valor na session.
     if(isset($_SESSION['user_uuid'])){
         $user_uuid = $_SESSION['user_uuid'];
     }
 
-    $con = new mysqli('localhost', 'root', '', 'codeally');
-    $stmt = $con->prepare('SELECT name, account_type FROM user_profile WHERE uuid = ?');
+    $conn = new mysqli('localhost', 'root', '', 'codeally');
+    $stmt = $conn->prepare('SELECT name, account_type FROM user_profile WHERE uuid = ?');
     $stmt->bind_param('s', $user_uuid);
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
     $stmt->close();
-    $con->close();
+    $conn->close();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/styles/index.php/styles.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <title>CodeAlly - Início</title>
 </head>
-<body>
+<div class="container">
+    <h3 class="container-title">Início</h3>
     <?php if (!empty($user['name'])): ?>
-        <p>Bem vindo(a) <?php echo explode(" ", $user['name'])[0];?>.</p>
-        <a href="profile.php">Perfil</a>
-        <a href="../helpers/logout.php">Sair</a>
+        <div class="form-message">
+            <p class="message">Bem vindo(a) <?php echo explode(" ", $user['name'])[0];?>.</p>
+        </div>
+        <form method="post" class="container-form">
+            <div class="form-input-wrap">
+                <span><i class="uil uil-user-square form-icon"></i></span>
+                <input class="form-input" type="button" value="Perfil" profile>
+            </div>
+            <div class="form-input-wrap">
+                <span><i class="uil uil-sign-out-alt form-icon"></i></span>
+                <input class="form-input" type="button" value="Sair" exit>
+            </div>
+        </form>
     <?php else: ?>
-        <a href="cadastro.php">Cadastrar</a>
-        <a href="login.php">Logar</a>
+        <form method="post" class="container-form">
+            <div class="form-input-wrap">
+                <span><i class="uil uil-user-square form-icon"></i></span>
+                <input class="form-input" type="button" value="Cadastrar" register>
+            </div>
+            <div class="form-input-wrap">
+                <span><i class="uil uil-sign-out-alt form-icon"></i></span>
+                <input class="form-input" type="button" value="Login" login>
+            </div>
+        </form>
     <?php endif; ?>
+</div>
+<script src="../assets/js/index.php/script.js"></script>
+
+<body>
+
 </body>
+
 </html>

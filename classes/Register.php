@@ -90,8 +90,7 @@
                 $stmt->close();
                 $conn->close();
 
-                echo explode(' ', $this->name)[0] . ', cadastro realizado com sucesso. Redirecionando..<br><br>';
-                echo '<script>setTimeout(function() { window.location.href = "login.php"; }, 2500);</script>';
+                return explode(' ', $this->name)[0] . ', cadastro realizado com sucesso.';
 
             }   
             catch(Exception $e)
