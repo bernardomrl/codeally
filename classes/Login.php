@@ -58,7 +58,10 @@
                     $_SESSION['user_uuid'] = $row['uuid'];
                 }
 
-                return "Logado com sucesso.";
+                $conn->close();
+
+                echo "Logado com sucesso. Redirecionando..<br><br>";
+                echo '<script>setTimeout(function() { window.location.href = "index.php"; }, 2500);</script>';
                 
             }
             catch(Exception $e)

@@ -8,6 +8,7 @@
     // 01.2 - Verificando se existe o valor na session.
     if(isset($_SESSION['user_uuid'])){ // Se existir um user_uuid na session, encaminhar para o index.php, pois já está logado.
         header("Location: index.php");
+        exit();
     }
     // 02 - Importando classe.
     require_once("../classes/Login.php");

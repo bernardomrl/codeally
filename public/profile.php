@@ -7,6 +7,7 @@
     if(!isset($_SESSION['user_uuid']))
     {
         header("Location: index.php");
+        exit();
     }
 
     require_once("../classes/Profile.php");
@@ -24,7 +25,7 @@
         $email = isset($_POST['email']) ? $_POST['email'] : '';
         $age = isset($_POST['idade']) ? $_POST['idade'] : '';
         $password = isset($_POST['password']) ? $_POST['password'] : '';
-        $password_change = isset($password);
+        $password_change = !empty($password);
         $password_new = isset($_POST['password_new']) ? $_POST['password_new'] : '';
         $password_new_confirm = isset($_POST['password_new_confirm']) ? $_POST['password_new_confirm'] : '';
 

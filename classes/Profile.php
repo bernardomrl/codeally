@@ -143,6 +143,10 @@
                     {
                         throw new Exception('As senhas não coincidem.');
                     }
+                    if($this->password_new == $this->password)
+                    {
+                        throw new Exception('A nova senha deve ser diferente da senha atual.');
+                    }
 
                     $this->password_new = password_hash($this->password_new, PASSWORD_DEFAULT);
                     $stmt = $conn->prepare('UPDATE user_account SET password = ? WHERE uuid = ?');
