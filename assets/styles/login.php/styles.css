@@ -52,6 +52,7 @@ body {
 .container .container-form .form-input-wrap {
   display: flex;
   justify-content: center;
+  margin-bottom: 1rem;
 }
 .container .container-form .form-input-wrap .form-icon {
   background-color: #363b41;
@@ -97,7 +98,6 @@ body {
   background-color: #3b4148;
   border-radius: 0 0.25rem 0.25rem 0;
   color: #a9a9a9;
-  margin-bottom: 1rem;
   padding: 0 1rem;
   width: 13.5rem;
   height: 3.15rem;
@@ -134,11 +134,10 @@ body {
   cursor: pointer;
   transition: 350ms ease-in-out;
   font-family: "Poppins", sans-serif;
-  margin-bottom: 1rem;
 }
 .container .container-form .form-input-wrap .form-input[type=submit]:hover {
-  background: #ff6b64;
-  color: #ffcac7;
+  background: #ff9994;
+  color: #ff6961;
 }
 .container .container-form .form-input-wrap .form-input:focus {
   outline: none;

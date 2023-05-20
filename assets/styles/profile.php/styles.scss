@@ -122,7 +122,7 @@ body {
                     font-family: $poppins;
 
                     &:hover {
-                        background: lighten($color: $form-submit-background, $amount: 10%);
+                        background-color: lighten($color: $form-submit-background, $amount: 10%);
                         color: $form-submit-background;
                     }
                 }

@@ -129,7 +129,7 @@ body {
   font-family: "Poppins", sans-serif;
 }
 .container .container-form .form-input-wrap .form-input[type=submit]:hover {
-  background: #ff9994;
+  background-color: #ff9994;
   color: #ff6961;
 }
 .container .container-form .form-input-wrap .form-input:focus {

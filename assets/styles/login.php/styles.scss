@@ -42,6 +42,7 @@ body {
         .form-input-wrap {
             display: flex;
             justify-content: center;
+            margin-bottom: 1rem;
 
             .form-icon {
                 background-color: $form-icon-background;
@@ -93,7 +94,6 @@ body {
                     background-color: $form-input-background;
                     border-radius: 0 0.25rem 0.25rem 0;
                     color: $form-input-color;
-                    margin-bottom: 1rem;
                     padding: 0 1rem;
                     width: 13.5rem;
                     height: 3.15rem;
@@ -130,11 +130,10 @@ body {
                     cursor: pointer;
                     transition: 350ms ease-in-out;
                     font-family: $poppins;
-                    margin-bottom: 1rem;
 
                     &:hover {
-                        background: lighten($color: $form-submit-background, $amount: 0.5%);
-                        color: lighten($color: $form-submit-background, $amount: 20%);
+                        background: lighten($color: $form-submit-background, $amount: 10%);
+                        color: $form-submit-background;
                     }
                 }
 

@@ -22,7 +22,7 @@
 
         try{
             $message = $login->login();
-            header("Location: index.php");
+            header("Location: login.php");
         }catch(Exception $e){
             $message = $e->getMessage();
         }
@@ -63,7 +63,7 @@
         </div>
         <div class="form-input-wrap">
             <input type="email" class="form-input" placeholder="Fazer Cadastro" disabled>
-            <span><a href="login.html" class="uil uil-arrow-right button-icon"></a></span>
+            <span><a href="register.php" class="uil uil-arrow-right button-icon"></a></span>
         </div>
     </form>
     <?php if (!empty($message)): ?>
