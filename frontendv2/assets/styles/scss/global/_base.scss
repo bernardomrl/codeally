@@ -1,0 +1,65 @@
+// Imports
+    // Google Fonts
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+    // Keyframes
+
+    // Mixins
+
+// Variables
+    // Fonts
+        // Font Families
+            $ff-poppins : 'Poppins', sans-serif;
+            $ff-rubik : 'Rubik', sans-serif;
+
+        // Font Weights - remover depois as variaveis nao utilizadas.
+            $fw-thin : 100;
+            $fw-x-light : 200; 
+            $fw-light : 300;
+            $fw-regular : 400;
+            $fw-medium : 500;
+            $fw-semi-bold : 600;
+            $fw-bold : 700;
+            $fw-x-bold : 800;
+            $fw-black : 900;
+
+        // Font sizes
+            $fs-xx-small : 0.5rem;
+            $fs-x-small : 0.75rem;
+            $fs-small : 0.85rem;
+            $fs-regular : 1rem;
+            $fs-medium : 1.25rem;
+            $fs-large : 1.5rem;
+            $fs-x-large : 2rem;
+            $fs-xx-large : 2.5rem;
+            $fs-giant : 3rem;
+             
+    // Colors
+        // Main Colors
+            $main-color: #4E7BED;
+            $main-color-light : lighten($main-color, 10%);
+            $main-color-x-light: lighten($main-color,20%);
+            $main-color-dark: darken($main-color, 10%);
+            $main-color-x-dark: darken($main-color, 20%);
+
+        // Text Colors
+            $text-light: #0B132A;
+            $text-light-alt: #4F5665;
+            $text-dark: white; // Alterar
+
+        // Background Colors
+            $background-light: white;
+            $background-dark: black; // Alterar
+
+// Base format
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+$card-shadow : 22px 22px 100px #f2f2f2,
+              -22px -22px 100px #ffffff;
