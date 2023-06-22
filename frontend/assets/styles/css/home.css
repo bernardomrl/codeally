@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Manrope:wght@200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  padding: 2.5rem 10rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  height: 5rem;
+  padding: 2.5rem 10rem;
+}
+header .header-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0B132A;
+  font-family: "Poppins", sans-serif;
+  width: 20rem;
+}
+header .header-logo span {
+  color: #4E7BED;
+}
+header .header-search {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45rem;
+}
+header .header-search input {
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 1rem;
+  padding: 0 1rem;
+  border: none;
+  background-color: #EDF2F6;
+  border: 0.1rem solid #dce6ee;
+  outline: none;
+  font-family: "Inter", sans-serif;
+}
+header .header-search input::placeholder {
+  color: #4F5665;
+}
+header .header-search .search-icon {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  right: 1rem;
+  cursor: pointer;
+}
+header .header-search .search-icon svg {
+  height: 1rem;
+  width: 1rem;
+}
+header .header-search .search-icon svg path:nth-child(1) {
+  fill: transparent;
+}
+header .header-search .search-icon svg path:nth-child(2), header .header-search .search-icon svg path:nth-child(3) {
+  fill: #8D98AA;
+}
+header .header-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2rem;
+}
+header .header-profile .header-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2rem;
+}
+header .header-profile .header-buttons .header-notification,
+header .header-profile .header-buttons .header-messages {
+  cursor: pointer;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+header .header-profile .header-buttons .header-notification svg,
+header .header-profile .header-buttons .header-messages svg {
+  width: 100%;
+  height: 100%;
+}
+header .header-profile .header-buttons .header-notification svg path,
+header .header-profile .header-buttons .header-messages svg path {
+  fill: transparent;
+}
+header .header-profile .header-buttons .header-notification:first-child,
+header .header-profile .header-buttons .header-messages:first-child {
+  margin-right: 2rem;
+}
+header .header-profile .header-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .header-profile .header-user .user-picture {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+header .header-profile .header-user .user-picture img {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+header .header-profile .header-user .user-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: "Inter", sans-serif;
+  margin-right: 2rem;
+}
+header .header-profile .header-user .user-text .user-greetings {
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: #717B8C;
+  margin-bottom: 0.25rem;
+}
+header .header-profile .header-user .user-text .user-name {
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #4F5665;
+}
+header .header-profile .header-user .user-menu {
+  height: 1.75rem;
+  width: 1.75rem;
+}
+header .header-profile .header-user .user-menu .menu-icon {
+  width: 100%;
+  height: 100%;
+}
+header .header-profile .header-user .user-menu .menu-icon svg {
+  height: 100%;
+  width: 100%;
+}
+header .header-profile .header-user .user-menu .menu-icon svg path {
+  cursor: pointer;
+}
+header .header-profile .header-user .user-menu .menu-icon svg path:nth-child(1) {
+  fill: #8D98AA;
+}
+header .header-profile .header-user .user-menu .menu-icon svg path:nth-child(2) {
+  fill: #d6dae0;
+}
+
+main {
+  padding: 6rem;
+}

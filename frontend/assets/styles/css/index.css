@@ -1,0 +1,474 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Manrope:wght@200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  background-color: white;
+  padding: 0 15rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  height: 5rem;
+  align-items: center;
+  width: 100%;
+}
+header .header-logo {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #0B132A;
+  transition: color 250ms ease-in-out;
+}
+header .header-logo span {
+  color: #4E7BED;
+}
+header .header-auth .auth-link {
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #0B132A;
+}
+header .header-auth .auth-link:last-child {
+  padding: 0.5rem 1.25rem;
+  margin-left: 1rem;
+  border-radius: 2rem;
+  color: #4E7BED;
+  border: 0.15rem solid #4E7BED;
+  background-color: transparent;
+  transition: background-color 250ms ease-in-out, border 250ms ease-in-out, color 250ms ease-in-out, box-shadow 350ms ease-in-out;
+  cursor: pointer;
+}
+header .header-auth .auth-link:last-child:hover {
+  background-color: #2058e8;
+  box-shadow: 0px 5px 15px 0px rgba(124, 158, 242, 0.75);
+  border: 0.15rem solid #2058e8;
+  color: white;
+}
+header .header-auth .auth-link:first-child {
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+header .header-auth .auth-link:first-child:before {
+  content: "";
+  position: absolute;
+  transition: transform 250ms ease;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: #4E7BED;
+  transform: scaleX(0);
+}
+header .header-auth .auth-link:first-child:hover:before {
+  transform: scaleX(1);
+}
+
+main .home {
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 10rem);
+  width: 100%;
+}
+main .home .home-content {
+  display: flex;
+  flex-direction: column;
+}
+main .home .home-content .home-title {
+  color: #0B132A;
+  font-size: 2.5rem;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  width: 25rem;
+  margin-bottom: 3rem;
+}
+main .home .home-content .home-title span {
+  font-weight: 700;
+  color: #4E7BED;
+}
+main .home .home-content .home-subtitle {
+  color: #4F5665;
+  font-size: 1.25rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  width: 35rem;
+  margin-bottom: 3rem;
+}
+main .home .home-content .home-subtitle span {
+  font-weight: 600;
+}
+main .home .home-content .home-button {
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  background-color: #4E7BED;
+  border: none;
+  width: 12.5rem;
+  margin-bottom: 6rem;
+  transition: box-shadow 350ms ease-in-out, background-color 250ms ease-in-out;
+  cursor: pointer;
+}
+main .home .home-content .home-button:hover {
+  background-color: #2058e8;
+  box-shadow: 0px 10px 30px 0px rgba(124, 158, 242, 0.75);
+}
+main .home .home-content .home-card {
+  display: flex;
+  justify-self: center;
+  justify-content: space-evenly;
+  background-color: white;
+  align-items: center;
+  align-self: center;
+  height: 8rem;
+  width: 85%;
+  border-radius: 1rem;
+  box-shadow: 22px 22px 100px #f0f0f0, -22px -22px 100px #ffffff;
+  transition: box-shadow 350ms ease-in-out;
+}
+main .home .home-content .home-card .home-item {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+main .home .home-content .home-card .home-item .item-text {
+  font-family: "Rubik", sans-serif;
+}
+main .home .home-content .home-card .home-item .item-text .item-title {
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: #0B132A;
+}
+main .home .home-content .home-card .home-item .item-text .item-subtitle {
+  font-weight: 400;
+  font-size: 1rem;
+  color: #4F5665;
+}
+main .home .home-content .home-card .home-item svg {
+  height: 3.5rem;
+  width: 3.5rem;
+  margin-right: 1rem;
+}
+main .home .home-content .home-card .home-item svg .user-icon:nth-child(1) {
+  fill: #2058e8;
+}
+main .home .home-content .home-card .home-item svg .user-icon:nth-child(2) {
+  fill: #4E7BED;
+}
+main .home .home-content .home-card .home-item svg .user-icon:nth-child(3) {
+  fill: #abc0f6;
+}
+main .home .home-content .home-card .home-item svg .location-icon:nth-child(1) {
+  fill: #4E7BED;
+}
+main .home .home-content .home-card .home-item svg .location-icon:nth-child(2) {
+  fill: #7c9ef2;
+}
+main .home .home-content .home-card .home-item svg .location-icon:nth-child(3) {
+  fill: #abc0f6;
+}
+main .home .home-content .home-card .home-item svg .server-icon:nth-child(1), main .home .home-content .home-card .home-item svg .server-icon:nth-child(2) {
+  fill: #4E7BED;
+}
+main .home .home-content .home-card .home-item svg .server-icon:nth-child(3), main .home .home-content .home-card .home-item svg .server-icon:nth-child(4), main .home .home-content .home-card .home-item svg .server-icon:nth-child(5) {
+  fill: #1445c1;
+}
+main .home .home-content .home-card .home-item svg .server-icon:nth-child(6) {
+  fill: #abc0f6;
+}
+main .home .home-content .home-card .home-item-divisor {
+  height: 65%;
+  background-color: #4F5665;
+  opacity: 0.1;
+  width: 0.15rem;
+}
+main .home .home-content .home-card:hover {
+  box-shadow: 22px 22px 100px #e6e6e6, -22px -22px 100px #ffffff;
+}
+main .security {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  margin-bottom: 12.5rem;
+}
+main .security .security-content {
+  height: 50rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main .security .security-content .security-svg {
+  height: 30rem;
+  width: 30rem;
+  margin-right: 4rem;
+}
+main .security .security-content .security-svg svg {
+  width: 100%;
+  height: 100%;
+}
+main .security .security-content .security-text {
+  font-family: "Rubik", sans-serif;
+}
+main .security .security-content .security-text .security-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #0B132A;
+  width: 30rem;
+  margin-bottom: 2rem;
+}
+main .security .security-content .security-text .security-title span {
+  font-weight: 700;
+}
+main .security .security-content .security-text .security-subtitle {
+  font-size: 1.25rem;
+  width: 30rem;
+  font-weight: 400;
+  color: #4F5665;
+  margin-bottom: 2rem;
+}
+main .security .security-content .security-text .security-list {
+  display: flex;
+  flex-direction: column;
+}
+main .security .security-content .security-text .security-list .security-item {
+  color: #4F5665;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+}
+main .security .security-content .security-text .security-list .security-item svg {
+  margin-right: 1rem;
+  height: 1.25rem;
+  width: 1.25rem;
+}
+main .security .security-content .security-text .security-list .security-item svg .check-circle:nth-child(1) {
+  fill: white;
+}
+main .security .security-content .security-text .security-list .security-item svg .check-circle:nth-child(2) {
+  fill: #4E7BED;
+}
+main .plans {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Rubik", sans-serif;
+}
+main .plans .plans-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #0B132A;
+  margin-bottom: 1rem;
+}
+main .plans .plans-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #4F5665;
+  margin-bottom: 4rem;
+}
+main .plans .plans-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+main .plans .plans-content .plan {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  border: 0.15rem solid rgba(79, 86, 101, 0.15);
+  border-radius: 1rem;
+  padding: 2rem;
+  height: 45rem;
+  width: 25rem;
+  margin: 1rem;
+  transition: box-shadow 250ms ease-in-out;
+}
+main .plans .plans-content .plan .plan-svg {
+  height: 15rem;
+  width: 10rem;
+}
+main .plans .plans-content .plan .plan-svg embed {
+  height: 100%;
+  width: 100%;
+}
+main .plans .plans-content .plan .plan-title {
+  font-size: 1.25rem;
+  font-weight: 1rem;
+  margin-bottom: 2rem;
+}
+main .plans .plans-content .plan .plan-features {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 10rem;
+}
+main .plans .plans-content .plan .plan-features .plan-feature {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+main .plans .plans-content .plan .plan-features .plan-feature svg {
+  height: 2rem;
+  width: 2rem;
+  margin-right: 1rem;
+}
+main .plans .plans-content .plan .plan-features .plan-feature svg .check-circle:nth-child(1) {
+  fill: #4E7BED;
+}
+main .plans .plans-content .plan .plan-features .plan-feature svg .check-circle:nth-child(2) {
+  fill: transparent;
+}
+main .plans .plans-content .plan .plan-features .plan-feature .feature-text {
+  color: #4F5665;
+  font-weight: 400;
+  font-size: 0.85rem;
+  width: 18rem;
+}
+main .plans .plans-content .plan .plan-price {
+  height: max-content;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3.5rem;
+}
+main .plans .plans-content .plan .plan-price .price-text {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+main .plans .plans-content .plan .plan-price .price-text span {
+  color: #4F5665;
+}
+main .plans .plans-content .plan .plan-price .price-button {
+  padding: 0.5rem 3rem;
+  border-radius: 2rem;
+  border: 0.15rem solid #4E7BED;
+  background-color: transparent;
+  font-family: "Rubik", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #4E7BED;
+  transition: background-color 250ms ease-in-out, border 250ms ease-in-out, color 250ms ease-in-out, box-shadow 350ms ease-in-out;
+  cursor: pointer;
+}
+main .plans .plans-content .plan .plan-price .price-button:hover {
+  background-color: #2058e8;
+  box-shadow: 0px 5px 15px 0px rgba(124, 158, 242, 0.75);
+  border: 0.15rem solid #2058e8;
+  color: white;
+}
+main .plans .plans-content .plan:hover {
+  box-shadow: 22px 22px 100px #f0f0f0, -22px -22px 100px #ffffff;
+}
+main .plans .plans-content .plan:nth-child(3) {
+  border: 0.3rem solid #4E7BED;
+}
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 25rem;
+  width: 100%;
+}
+footer .footer-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-family: "Poppins", sans-serif;
+  width: 50rem;
+  height: 20rem;
+}
+footer .footer-content .footer-title {
+  font-weight: 700;
+  font-size: 2rem;
+  color: #0B132A;
+  margin-bottom: 1rem;
+}
+footer .footer-content .footer-title span {
+  color: #4E7BED;
+}
+footer .footer-content .footer-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #4F5665;
+  width: 25rem;
+  margin-bottom: 2rem;
+}
+footer .footer-content .footer-subtitle span {
+  font-weight: 700;
+}
+footer .footer-content .footer-socials {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 9rem;
+  margin-bottom: 2rem;
+}
+footer .footer-content .footer-socials .footer-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  padding: 0.75rem;
+  margin: 0.5rem;
+  box-shadow: 6px 6px 12px #e0e0e0, -6px -6px 12px #ffffff;
+  transition: box-shadow 250ms ease-in-out;
+}
+footer .footer-content .footer-socials .footer-social svg {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+footer .footer-content .footer-socials .footer-social path {
+  fill: #4E7BED;
+}
+footer .footer-content .footer-socials .footer-social:hover {
+  box-shadow: 6px 6px 12px #cccccc, -6px -6px 12px #ffffff;
+}
+footer .footer-content .footer-rights {
+  color: #717B8C;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+footer .footer-items {
+  height: 15rem;
+  width: 10rem;
+  font-family: "Rubik", sans-serif;
+}
+footer .footer-items .footer-title {
+  color: #0B132A;
+  font-weight: 500;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+footer .footer-items .footer-item {
+  margin-bottom: 0.5rem;
+}
+footer .footer-items .footer-item .item-link {
+  color: #4F5665;
+  font-weight: 400;
+  font-size: 1rem;
+  transition: color 250ms ease-in-out;
+}
+footer .footer-items .footer-item .item-link:hover {
+  color: #4E7BED;
+}

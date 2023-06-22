@@ -1,0 +1,11 @@
+@import 'global/base';
+
+body {
+    @include main-padding();
+}
+
+@include header();
+
+main {
+    padding: 6rem;
+}
