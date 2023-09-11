@@ -32,7 +32,10 @@ export default function Header() {
       }`}
     >
       <div className="navbar-start">
-        <a className="btn btn-ghost normal-case text-xl font-poppins font-bold">
+        <a
+          href="#"
+          className="btn btn-ghost normal-case text-xl font-poppins font-bold"
+        >
           <span>
             code<span className="text-primary">ally</span>
           </span>
@@ -41,24 +44,26 @@ export default function Header() {
       <div className="navbar-center hidden lg:flex">
         <ul className="join">
           {...navigation.slice(0, 3).map((item, index) => (
-            <li
+            <a
               key={index}
+              href={item.anchor}
               className="btn btn-md btn-ghost join-item normal-case font-inter"
             >
-              <a href={item.anchor}>{item.name}</a>
-            </li>
+              {item.name}
+            </a>
           ))}
         </ul>
       </div>
       <div className="navbar-end space-x-2">
         <ul className="join hidden lg:flex">
           {...navigation.slice(3).map((item, index) => (
-            <li
+            <a
               key={index}
+              href={item.anchor}
               className="btn btn-md btn-ghost join-item normal-case font-inter"
             >
-              <a href={item.anchor}>{item.name}</a>
-            </li>
+              {item.name}
+            </a>
           ))}
         </ul>
         <details className="dropdown dropdown-end dropdown-top md:dropdown-bottom lg:dropdown-bottom">
@@ -66,7 +71,7 @@ export default function Header() {
             <PaintBrushIcon className="h-5 w-5" />
             <ChevronDownIcon className="h-5 w-5" />
           </summary>
-          <ul className="p-2 shadow menu dropdown-content my-4 z-1 bg-base-200 rounded-box w-52">
+          <ul className="p-2 shadow menu dropdown-content m-4 z-1 bg-base-200 rounded-box w-52">
             <li>
               <a data-set-theme="dark" className="font-inter font-medium">
                 <div className="badge badge-primary badge-xs rounded-full mr-2"></div>
