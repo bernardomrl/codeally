@@ -85,6 +85,12 @@ export default function Header() {
                 Dracula
               </a>
             </li>
+            <li>
+              <a data-set-theme="acid" className="font-inter font-medium">
+                <div className="badge badge-neutral badge-xs rounded-full mr-2"></div>
+                Acid
+              </a>
+            </li>
           </ul>
         </details>
         <label
