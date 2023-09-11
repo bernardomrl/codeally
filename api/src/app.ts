@@ -9,7 +9,6 @@ const app: Application = express();
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
-app.use(tokenMiddleware);
 
 // * Routes
 app.use(AuthRouter);
