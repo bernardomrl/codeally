@@ -46,7 +46,7 @@ export default function Pricing() {
   };
 
   return (
-    <div className="w-full flex flex-col p-5 mb-40">
+    <div id="pricing" className="w-full flex flex-col p-5 mb-40">
       <div className="max-w-2xl lg:text-center self-center">
         <h2 className="font-semibold font-inter text-primary">Planos</h2>
         <p className="mt-2 text-3xl font-bold font-poppins sm:text-4xl">
