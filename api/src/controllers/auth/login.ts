@@ -54,7 +54,7 @@ export default class Login {
             }
 
             if (rows.length === 0) {
-                res.status(404).json({ error: 'Login ou senha incorretos.' });
+                res.status(400).json({ error: 'Login ou senha incorretos.' });
                 return;
             }
 
@@ -62,7 +62,7 @@ export default class Login {
 
             const validPassword = await bcrypt.compare(this.password, row.password);
             if (!validPassword) {
-                res.status(401).json({ error: 'Login ou senha incorretos.' });
+                res.status(400).json({ error: 'Login ou senha incorretos.' });
                 return;
             }
 
@@ -89,7 +89,11 @@ export default class Login {
             
             res.cookie('access', accessToken, { httpOnly: true });
 
-            res.status(200).json({ success: 'Usuário logado com sucesso.', access: accessToken });
+            res.status(200).json({ 
+                success: 'Usuário logado com sucesso.',
+                redirect: '/home',
+                access: accessToken
+            });
             connection.end();
             return;
         } catch (error) {
