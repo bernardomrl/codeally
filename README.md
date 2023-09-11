@@ -12,12 +12,7 @@ Codeally é uma aplicação concebida como parte de um Trabalho de Conclusão de
 
 ## 💻 Tecnologias Utilizadas
 
-<p align="center">
-  <a href="https://github.com/bernardomrl/codeally">
-    <img src="https://skillicons.dev/icons?i=figma,postman,express,mysql,ts,nextjs,tailwind,git,aws" />
-  </a>
-</p>
-
+<img src="https://skillicons.dev/icons?i=figma,postman,express,mysql,ts,nextjs,tailwind,git,aws" />
 
 ## Visão Geral
 
