@@ -21,9 +21,12 @@ Codeally é uma aplicação concebida como parte de um Trabalho de Conclusão de
 
 ## Visão Geral
 
-> O Codeally é um software projetado especialmente para atender às necessidades dos freelancers que desejam estabelecer conexões sólidas com empresas em busca de talento criativo e técnico. Ele oferece uma variedade de recursos e ferramentas para apoiar os profissionais independentes em todas as etapas de sua jornada de trabalho.
+O Codeally é um software projetado especialmente para atender às necessidades dos freelancers que desejam estabelecer conexões sólidas com empresas em busca de talento criativo e técnico. Ele oferece uma variedade de recursos e ferramentas para apoiar os profissionais independentes em todas as etapas de sua jornada de trabalho.
+
+
 ### Como contribuir
-> Sinta-se livre para enviar sugestões, correções ou adições ao código fonte dos projetos. Para contribuir:
+
+Sinta-se livre para enviar sugestões, correções ou adições ao código fonte dos projetos. Para contribuir:
 
     - Faça o fork deste repositório.
     - Crie um branch com a sua contribuição (git checkout -b minha-contribuicao).
