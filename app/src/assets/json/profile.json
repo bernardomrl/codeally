@@ -1,0 +1,41 @@
+{
+    "experience" : [
+        { "name": "Júnior", "value": "junior" },
+        { "name": "Pleno", "value": "pleno" },
+        { "name": "Sênior", "value": "senior" }
+    ],
+    "programmingLanguage": [
+        { "name": "JavaScript", "value": "javascript" },
+        { "name": "HTML", "value": "html" },
+        { "name": "CSS", "value": "css" },
+        { "name": "Python", "value": "python" },
+        { "name": "PHP", "value": "php" },
+        { "name": "C#", "value": "csharp" },
+        { "name": "TypeScript", "value": "typescript" },
+        { "name": "Swift", "value": "swift" },
+        { "name": "Kotlin", "value": "kotlin" }
+    ],
+    "framework": [
+        { "name": "React", "value": "react" },
+        { "name": "Vue.js", "value": "vuejs" },
+        { "name": "Express.js", "value": "expressjs" },
+        { "name": "Django", "value": "django" },
+        { "name": "Flask", "value": "flask" }
+    ],
+    "competencie": [
+        { "name": "Desenvolvedor Front-End", "value": "frontend-developer" },
+        { "name": "Desenvolvedor Back-End", "value": "backend-developer" },
+        { "name": "Desenvolvedor Full-Stack", "value": "fullstack-developer" },
+        { "name": "Desenvolvedor Mobile", "value": "mobile-developer" }
+    ],
+    "language": [
+        { "name": "Português", "value": "portuguese" },
+        { "name": "Inglês", "value": "english" },
+        { "name": "Espanhol", "value": "spanish" }
+    ],
+    "country": [
+        { "name": "Brasil", "value": "brazil" },
+        { "name": "Portugal", "value": "portugal" },
+        { "name": "Estados Unidos", "value": "usa" }
+    ]
+}

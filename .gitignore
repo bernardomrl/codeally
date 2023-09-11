@@ -1,0 +1,7 @@
+# api
+/api/dist/
+/api/node_modules/
+
+# app
+/app/.next/
+/app/node_modules/

@@ -1,0 +1,2 @@
+export { default as renderEmail } from '@/utils/email/render-email';    // Export Render Email Function
+export { default as sendEmail } from '@/utils/email/send-email';        // Export Send Email Function
