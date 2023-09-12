@@ -73,61 +73,19 @@ export default class UpdateAccount {
 
     // * Perform Account Update
     public async update(res: Response): Promise<void> {
-        // try {
-        //     const connection = await connectDatabase();
-        //     const uuid = this.token ? extractValueFromToken(this.token, 'uuid') : undefined;
-    
-        //     if (!uuid) {
-        //         res.status(400).json({ error: 'Token inválido.' });
-        //         return;
-        //     }
-
-        //     const validationError = await this.validateInputs();
-
-        //     if (validationError !== null) {
-        //         res.status(400).json({ error: validationError });
-        //         return;
-        //     }
-
-        //     const [uRows] = await connection.execute('SELECT username, email, password FROM user_account WHERE uuid = ?', [uuid]);
-        //     const [rows] = await connection.execute('SELECT username, email FROM user_account WHERE username = ? OR email = ?', [this.username, this.email]);
-
-        //     if (!Array.isArray(rows)) {
-        //         res.status(500).json({ error: 'Erro ao buscar dados do usuário.' });
-        //         return;
-        //     }
-
-        //     if (Array.isArray(uRows) && uRows.length > 0) {
-        //         const uRow = uRows[0] as RowDataPacket;
-        //         const row = rows[0] as RowDataPacket;
-
-        //         if (uRow.email !== this.email && row.email === this.email) {
-        //             res.status(422).json({ error: 'E-mail já está sendo utilizado.' });
-        //             return;
-        //         }
-
-        //         if (uRow.username !== this.username && row.username === this.username) {
-        //             res.status(422).json({ error: 'Usuário já está sendo utilizado.' });
-        //             return;
-        //         }
-                
-        //     }
-
-        //     await connection.execute('UPDATE user_account SET username = ?, email = ? WHERE uuid = ?', [this.username, this.email, uuid]);
-        //     res.status(200).json({ success: 'Conta atualizada com sucesso.' });
-        //     return;
-        // } catch (error) {
-        //     console.log(error);
-        //     res.status(500).json({ error: 'Erro interno no servidor.' });
-        //     return;
-        // }
-
         try {
             const connection = await connectDatabase();
-            const uuid = this.token ? extractValueFromToken(this.token, 'uuid') : undefined;
+            const uuid = this.token ? await extractValueFromToken(this.token, 'uuid') : undefined;
 
             if (!uuid) {
                 res.status(400).json({ error: 'Token inválido.' });
+                return;
+            }
+
+            const validationError = await this.validateInputs();
+
+            if (validationError !== null) {
+                res.status(400).json({ error: validationError });
                 return;
             }
 
