@@ -7,7 +7,7 @@ const config: Config = {
   ],
   plugins: [require('daisyui')],
   daisyui: {
-    themes: ['light', 'dark', 'dracula', 'acid']
+    themes: ['light', 'dark', 'dracula', 'winter']
   },
   theme: {
     extend: {
