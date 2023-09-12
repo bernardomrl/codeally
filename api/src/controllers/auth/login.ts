@@ -1,9 +1,9 @@
-import { createAccessToken, createRefreshToken } from '@/utils/jwt';  // Create JWT Token Function
-import { connectDatabase } from '@/utils/database';             // Connect Database Function
-import { RowDataPacket } from 'mysql2';                         // RowDataPacket Type
-import { Response } from 'express';                             // Response Module
-import bcrypt from 'bcrypt';                                    // Bcrypt Module
-import * as yup from 'yup';                                     // Yup Module
+import { createAccessToken, createRefreshToken } from '@/utils/jwt';    // Create JWT Token Function
+import { connectDatabase } from '@/utils/database';                     // Connect Database Function
+import { RowDataPacket } from 'mysql2';                                 // RowDataPacket Type
+import { Response } from 'express';                                     // Response Module
+import bcrypt from 'bcrypt';                                            // Bcrypt Module
+import * as yup from 'yup';                                             // Yup Module
 
 export default class Login {
     private login: string;
