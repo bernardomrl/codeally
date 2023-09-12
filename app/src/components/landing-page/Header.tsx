@@ -74,26 +74,26 @@ export default function Header() {
           <ul className="p-2 shadow menu dropdown-content m-4 z-1 bg-base-200 rounded-box w-52">
             <li>
               <a data-set-theme="dark" className="font-inter font-medium">
-                <div className="badge badge-primary badge-xs rounded-full mr-2"></div>
+                <div className="badge badge-info badge-xs rounded-full mr-2"></div>
                 Dark
               </a>
             </li>
             <li>
               <a data-set-theme="light" className="font-inter font-medium">
-                <div className="badge badge-secondary badge-xs rounded-full mr-2"></div>
+                <div className="badge badge-success badge-xs rounded-full mr-2"></div>
                 Light
               </a>
             </li>
             <li>
               <a data-set-theme="dracula" className="font-inter font-medium">
-                <div className="badge badge-accent badge-xs rounded-full mr-2"></div>
+                <div className="badge badge-warning badge-xs rounded-full mr-2"></div>
                 Dracula
               </a>
             </li>
             <li>
-              <a data-set-theme="acid" className="font-inter font-medium">
-                <div className="badge badge-neutral badge-xs rounded-full mr-2"></div>
-                Acid
+              <a data-set-theme="emerald" className="font-inter font-medium">
+                <div className="badge badge-error badge-xs rounded-full mr-2"></div>
+                Emerald
               </a>
             </li>
           </ul>
