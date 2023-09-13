@@ -1,26 +1,44 @@
 import Image from 'next/image';
 
-import DefaultUserImg from '@/assets/img/profile.png';
-import { Bars3BottomLeftIcon } from '@heroicons/react/24/outline';
+import Placeholder from '@/assets/img/profile.png';
 
 export default function Header() {
   return (
-    <div className="navbar absolute top-0 w-full xl:w-[calc(100vw-20rem)] bg-base-200 flex justify-between z-50">
-      <div className="flex-none">
-        <label htmlFor="home-drawer" className="btn btn-ghost xl:hidden">
-          <Bars3BottomLeftIcon className="inline-block w-6 h-6 stroke-current" />
-        </label>
-      </div>
-      <div>
-        <a
-          href="/profile"
-          tabIndex={0}
-          className="btn btn-ghost btn-circle avatar"
-        >
+    <div className="navbar fixed top-0 z-10 h-12 bg-base-200 justify-between">
+      <a
+        href="/home"
+        className="btn btn-ghost font-bold normal-case font-poppins text-xl"
+      >
+        <span>
+          code<span className="text-primary">ally</span>
+        </span>
+      </a>
+      <div className="dropdown dropdown-end">
+        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
           <div className="w-10 rounded-full">
-            <Image src={DefaultUserImg} alt="Avatar" width={200} height={200} />
+            <Image alt="User Profile Picture" src={Placeholder} />
           </div>
-        </a>
+        </label>
+        <ul
+          tabIndex={0}
+          className="menu menu-md dropdown-content mx-2 my-5 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
+        >
+          <li>
+            <a href="/profile" className="font-inter font-medium text-md">
+              Perfil
+            </a>
+          </li>
+          <li>
+            <a href="/settings" className="font-inter font-medium text-md">
+              Configurações
+            </a>
+          </li>
+          <li>
+            <a href="/home" className="font-inter font-medium text-md">
+              Sair
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   );
