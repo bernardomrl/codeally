@@ -1,3 +1,4 @@
+'use client';
 import { Toaster, ToastIcon, resolveValue } from 'react-hot-toast';
 
 import { Transition } from '@headlessui/react';

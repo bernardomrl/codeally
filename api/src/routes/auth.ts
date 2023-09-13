@@ -11,8 +11,8 @@ authRouter.post('/auth/login', async (req: Request, res: Response) => {
 
 // * Register Route
 authRouter.post('/auth/register', async (req: Request, res: Response) => {
-    const { email, username, password } = req.body;
-    await new Register(email, username, password).perform(res);
+    const { email, username, password, accountType } = req.body;
+    await new Register(email, username, password, accountType).perform(res);
 });
 
 // * Send Reset Password Email Route

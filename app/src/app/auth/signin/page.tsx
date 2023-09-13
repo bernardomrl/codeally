@@ -8,7 +8,6 @@ import { CustomToaster } from '@/components';
 
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import axios, { AxiosResponse, AxiosError } from 'axios';
-import Cookies from 'js-cookie';
 import { themeChange } from 'theme-change';
 
 export default function SignIn() {
@@ -29,6 +28,8 @@ export default function SignIn() {
 
   const [redirect, setRedirect] = useState('');
 
+  axios.defaults.withCredentials = true;
+
   async function SignIn() {
     try {
       const response: AxiosResponse = await axios.post(
@@ -37,15 +38,13 @@ export default function SignIn() {
       );
 
       if (response.status === 200) {
-        const { sucess, token, redirect } = response.data;
+        const { success, redirect } = response.data;
 
         setFormData({ login: '', password: '' });
 
-        Cookies.set('token', token);
-
         redirect ? setRedirect(redirect as string) : setRedirect('');
 
-        return sucess as string;
+        return success as string;
       } else {
         throw new Error('Erro ao fazer login.');
       }
@@ -61,7 +60,6 @@ export default function SignIn() {
           try {
             throw error;
           } catch {
-            console.log(error);
             throw new Error('Erro desconhecido.');
           }
         }

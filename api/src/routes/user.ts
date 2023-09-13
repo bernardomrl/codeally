@@ -13,20 +13,20 @@ userRouter.get('/user/profile/get/:username', tokenMiddleware, async (req: Reque
 
 // * Get Profile
 userRouter.get('/user/profile/get/', tokenMiddleware, async (req: Request, res: Response) => {
-    const token = req.header('Authorization')?.replace('Bearer ', '') as string;
+    const token = req.cookies.access as string;
     await new GetUser(token).get(res);
 });
 
 // * Update User Profile
 userRouter.post('/user/profile/update', tokenMiddleware, async (req: Request, res: Response) => {
-    const token = req.header('Authorization')?.replace('Bearer ', '') as string;
+    const token = req.cookies.access as string;    
     const { firstName, lastName, about, country, language } = req.body;
     await new UpdateProfile(token, firstName, lastName, about, country, language).update(res);
 });
 
 // * Update User Account
 userRouter.post('/user/account/update', tokenMiddleware, async (req: Request, res: Response) => {
-    const token = req.header('Authorization')?.replace('Bearer ', '') as string;
+    const token = req.cookies.access as string;    
     const { email, username, password, newPassword, newPasswordConfirm } = req.body;
 
     if (password && newPassword && newPasswordConfirm) {

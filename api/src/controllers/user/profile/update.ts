@@ -54,7 +54,7 @@ export default class UpdateProfile {
     public async update(res: Response): Promise<void> {
         try {
             const connection = await connectDatabase();
-            const uuid = this.token ? extractValueFromToken(this.token, 'uuid') : undefined;
+            const uuid = this.token ? await extractValueFromToken(this.token, 'uuid') : undefined;
 
             if (!uuid) {
                 res.status(400).json({ error: 'Token inválido.' });
