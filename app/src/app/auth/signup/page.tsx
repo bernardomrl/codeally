@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 
@@ -10,19 +11,28 @@ import axios, { AxiosResponse, AxiosError } from 'axios';
 import { themeChange } from 'theme-change';
 
 export default function SignUp() {
+  const router = useRouter();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     username: '',
-    password: ''
+    password: '',
+    accountType: 0
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, type } = e.target;
+
+    if (type === 'radio') {
+      setFormData({ ...formData, [name]: parseInt(value, 10) }); // Convert the value to an integer
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
-  async function Signup() {
+  const [redirect, setRedirect] = useState('');
+
+  async function SignUp() {
     try {
       const response: AxiosResponse = await axios.post(
         'http://localhost:8000/auth/register',
@@ -30,8 +40,11 @@ export default function SignUp() {
       );
 
       if (response.status === 201) {
-        setFormData({ email: '', username: '', password: '' });
-        return 'Conta criada com sucesso.';
+        const { success, redirect } = response.data;
+
+        redirect ? setRedirect(redirect as string) : setRedirect('');
+
+        return success as string;
       } else {
         throw new Error('Erro ao criar conta.');
       }
@@ -47,7 +60,6 @@ export default function SignUp() {
           try {
             throw error;
           } catch {
-            console.log(error);
             throw new Error('Erro desconhecido.');
           }
         }
@@ -59,7 +71,7 @@ export default function SignUp() {
     e.preventDefault();
 
     const submitPromise = new Promise((resolve, reject) => {
-      Signup()
+      SignUp()
         .then((result) => {
           resolve(result);
         })
@@ -81,7 +93,16 @@ export default function SignUp() {
 
   useEffect(() => {
     themeChange(false);
-  });
+
+    if (redirect && redirect !== '') {
+      const redirectTimer = setTimeout(() => {
+        router.push(redirect);
+      }, 2000);
+      return () => {
+        clearTimeout(redirectTimer);
+      };
+    }
+  }, [redirect, router]);
 
   return (
     <div className="flex h-screen w-full flex-col justify-center px-6 py-12 lg:px-8 font-inter">
@@ -104,7 +125,9 @@ export default function SignUp() {
         <form className="space-y-4" method="POST" onSubmit={handleSubmit}>
           <div>
             <label className="label">
-              <span className="label-text">Endereço de e-mail</span>
+              <span className="label-text">
+                Endereço de e-mail <span className="text-accent">*</span>
+              </span>
             </label>
             <input
               type="email"
@@ -116,7 +139,9 @@ export default function SignUp() {
           </div>
           <div>
             <label className="label">
-              <span className="label-text">Usuário</span>
+              <span className="label-text">
+                Usuário <span className="text-accent">*</span>
+              </span>
             </label>
             <input
               type="text"
@@ -128,7 +153,9 @@ export default function SignUp() {
           </div>
           <div>
             <label className="label">
-              <span className="label-text">Senha</span>
+              <span className="label-text">
+                Senha <span className="text-accent">*</span>
+              </span>
             </label>
             <div className="relative">
               <input
@@ -151,6 +178,26 @@ export default function SignUp() {
               </button>
             </div>
           </div>
+          <label className="label cursor-pointer">
+            <span className="label-text">Quero ser usuário</span>
+            <input
+              type="radio"
+              name="accountType"
+              value="0"
+              className="radio checked:bg-primary"
+              onChange={handleInputChange}
+            />
+          </label>
+          <label className="label cursor-pointer">
+            <span className="label-text">Quero ser freelancer.</span>
+            <input
+              type="radio"
+              name="accountType"
+              value="1"
+              className="radio checked:bg-secondary"
+              onChange={handleInputChange}
+            />
+          </label>
           <div>
             <button type="submit" className="btn btn-primary w-full mt-4">
               Criar conta
