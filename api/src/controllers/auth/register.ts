@@ -9,11 +9,13 @@ export default class Register {
     private email: string;
     private username: string;
     private password: string;
+    private accountType: number;
 
-    constructor(email: string, username: string, password: string) {
+    constructor(email: string, username: string, password: string, accountType: number) {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.accountType = accountType;
     }
 
     // * Validate Inputs
@@ -74,8 +76,11 @@ export default class Register {
             const hashedPassword = await bcrypt.hash(this.password, 10);
             const uuid = uuidv4();
             const first: number = 1;
-            await connection.execute('INSERT INTO user_account (uuid, username, email, password, first) VALUES (?, ?, ?, ?, ?)', [uuid, this.username, this.email, hashedPassword, first]);
-            res.status(201).json({ success: 'Usuário cadastrado com sucesso.' });
+            await connection.execute('INSERT INTO user_account (uuid, username, email, password, account_type, first) VALUES (?, ?, ?, ?, ?, ?)', [uuid, this.username, this.email, hashedPassword, this.accountType, first]);
+            res.status(201).json({ 
+                success: 'Usuário cadastrado com sucesso.',
+                redirect: '/auth/signin'
+            });
             connection.end();
             return;    
         } catch (error) {
