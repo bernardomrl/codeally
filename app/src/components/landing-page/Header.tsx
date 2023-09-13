@@ -5,7 +5,7 @@ import { navigation } from '@/components/landing-page';
 
 import {
   Bars3BottomRightIcon,
-  PaintBrushIcon,
+  SwatchIcon,
   ChevronDownIcon
 } from '@heroicons/react/20/solid';
 
@@ -68,7 +68,7 @@ export default function Header() {
         </ul>
         <details className="dropdown dropdown-end dropdown-top md:dropdown-bottom lg:dropdown-bottom">
           <summary className="btn btn-md btn-ghost normal-case">
-            <PaintBrushIcon className="h-5 w-5" />
+            <SwatchIcon className="h-5 w-5" />
             <ChevronDownIcon className="h-5 w-5" />
           </summary>
           <ul className="p-2 shadow menu dropdown-content m-4 z-1 bg-base-200 rounded-box w-52">
@@ -91,9 +91,9 @@ export default function Header() {
               </a>
             </li>
             <li>
-              <a data-set-theme="emerald" className="font-inter font-medium">
-                <div className="badge badge-error badge-xs rounded-full mr-2"></div>
-                Emerald
+              <a data-set-theme="winter" className="font-inter font-medium">
+                <div className="badge badge-neutral badge-xs rounded-full mr-2"></div>
+                Winter
               </a>
             </li>
           </ul>
