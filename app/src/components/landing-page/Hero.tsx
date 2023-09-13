@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Hero() {
   return (
     <div
@@ -15,12 +17,12 @@ export default function Hero() {
             projeto mais eficiente e produtivo.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <a
-              href="#"
+            <Link
+              href="/auth/signup"
               className="btn btn-md normal-case btn-primary rounded-full"
             >
               Começar agora
-            </a>
+            </Link>
             <a href="#" className="link link-hover">
               Saiba mais
             </a>
