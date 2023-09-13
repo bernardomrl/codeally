@@ -23,7 +23,7 @@ export default function RootLayout({
   }, [theme]);
 
   return (
-    <html lang="pt-br">
+    <html lang="en">
       <body>{children}</body>
     </html>
   );
