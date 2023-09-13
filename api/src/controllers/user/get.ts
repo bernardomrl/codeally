@@ -22,11 +22,17 @@ export default class GetUser {
                 return;
             }
 
-            let query: string = `
-                SELECT ua.username, ua.email, up.first_name, up.last_name, up.about, up.country, up.language
+            let query: string = '';
+
+            if (accountType === 0) {
+                query += `SELECT ua.email, ua.username, ua.account_type, up.first_name, up.last_name, up.about, up.country, up.language
                 FROM user_account ua
-                JOIN user_profile up ON up.uuid = ua.uuid
-            `;
+                JOIN user_profile up ON up.uuid = ua.uuid`
+            } else if (accountType === 1) {
+                query += `SELECT ua.email, ua.username, ua.account_type, up.first_name, up.last_name, up.about, up.country, up.language, up.experience, up.planguage, up.framework, up.competence
+                FROM user_account ua
+                JOIN user_profile up ON up.uuid = ua.uuid`
+            }
 
             const queryParams = [];
 
