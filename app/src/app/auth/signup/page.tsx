@@ -186,6 +186,7 @@ export default function SignUp() {
               value="0"
               className="radio checked:bg-primary"
               onChange={handleInputChange}
+              required
             />
           </label>
           <label className="label cursor-pointer">
@@ -196,6 +197,7 @@ export default function SignUp() {
               value="1"
               className="radio checked:bg-secondary"
               onChange={handleInputChange}
+              required
             />
           </label>
           <div>
