@@ -20,8 +20,13 @@ userRouter.get('/user/profile/get/', tokenMiddleware, async (req: Request, res: 
 // * Update User Profile
 userRouter.post('/user/profile/update', tokenMiddleware, async (req: Request, res: Response) => {
     const token = req.cookies.access as string;    
-    const { firstName, lastName, about, country, language } = req.body;
-    await new UpdateProfile(token, firstName, lastName, about, country, language).update(res);
+    const { firstName, lastName, about, country, language, experience, planguage, framework, competence } = req.body;
+    
+    if (experience && planguage && framework && competence) {
+        await new UpdateProfile(token, firstName, lastName, about, country, language, experience, planguage, framework, competence).update(res);
+    } else {
+        await new UpdateProfile(token, firstName, lastName, about, country, language).update(res);
+    }
 });
 
 // * Update User Account
