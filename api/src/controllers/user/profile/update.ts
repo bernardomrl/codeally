@@ -12,13 +12,22 @@ export default class UpdateProfile {
     private country?: string;
     private language?: string;
 
+    private experience?: string;
+    private planguage?: string;
+    private framework?: string;
+    private competence?: string;
+
     constructor(
         token: string, 
         firstName?: string, 
         lastName?: string, 
         about?: string, 
         country?: string, 
-        language?: string
+        language?: string,
+        experience?: string,
+        planguage?: string,
+        framework?: string,
+        competence?: string
     ) {
         this.token = token;
         this.firstName = firstName;
@@ -26,6 +35,10 @@ export default class UpdateProfile {
         this.about = about;
         this.country = country;
         this.language = language;
+        this.experience = experience;
+        this.planguage = planguage;
+        this.framework = framework;
+        this.competence = competence;
     }
 
     private async validate(): Promise<any> {
@@ -61,6 +74,8 @@ export default class UpdateProfile {
                 return;
             }
 
+            const [accountType]: any = await connection.execute('SELECT account_type FROM user_account WHERE uuid = ?', [uuid]);
+
             const validationError = await this.validate();
 
             if (validationError !== null) {
@@ -68,9 +83,21 @@ export default class UpdateProfile {
                 return;
             }
 
-            await connection.execute('UPDATE user_profile SET first_name = ?, last_name = ?, about = ?, country = ?, language = ? WHERE uuid = ?', [this.firstName, this.lastName, this.about, this.country, this.language, uuid]);
-            res.status(200).json({ success: 'Perfil atualizado com sucesso.' });
-            connection.end();
+            if (accountType[0].account_type === 0) {
+                await connection.execute('UPDATE user_profile SET first_name = ?, last_name = ?, about = ?, country = ?, language = ? WHERE uuid = ?', [this.firstName, this.lastName, this.about, this.country, this.language, uuid]);
+                connection.end();
+                res.status(200).json({ success: 'Perfil atualizado com sucesso.' });
+                return;
+            }
+
+            if (accountType[0].account_type === 1) {
+                await connection.execute('UPDATE user_profile SET first_name = ?, last_name = ?, about = ?, country = ?, language = ?, experience = ?, planguage = ?, framework = ?, competence = ? WHERE uuid = ?', [this.firstName, this.lastName, this.about, this.country, this.language, this.experience, this.planguage, this.framework, this.competence, uuid]);
+                connection.end();
+                res.status(200).json({ success: 'Perfil atualizado com sucesso.' });
+                return;
+            }
+
+            res.status(500).json({ error: 'Erro ao atualizar perfil, tipo de conta não definida.' });
             return;
         } catch (error) {
             console.log(error);
