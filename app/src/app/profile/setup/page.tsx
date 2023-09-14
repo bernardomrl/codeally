@@ -1,12 +1,10 @@
 'use client';
-// import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 
 import { CustomToaster } from '@/components';
 
-// import DefaultUserImg from '@/assets/img/profile.png';
 import Profile from '@/assets/json/profile.json';
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import { themeChange } from 'theme-change';
@@ -14,60 +12,111 @@ import { themeChange } from 'theme-change';
 axios.defaults.withCredentials = true;
 
 interface FormData {
+  username: string;
+  about: string;
   firstName: string;
   lastName: string;
-  about: string;
+  email: string;
   country: string;
   language: string;
-  [key: string]: string;
+  experience?: string;
+  competence?: string;
+  planguage?: string;
+  framework?: string;
 }
 
 export default function ProfileSetup() {
   const router = useRouter();
-  const [getAccountType, setGetAccountType] = useState(0);
+  const [redirect, setRedirect] = useState('');
   const [getData, setGetData] = useState({
+    email: '',
     username: '',
-    email: ''
-  });
-  const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    lastName: '',
-    about: '',
-    country: '',
-    language: ''
+    accountType: 0
   });
 
-  if (getAccountType === 1) {
-    formData.experience = '';
-    formData.programmingLanguage = '';
-    formData.framework = '';
-    formData.competence = '';
-    formData.accountType = '1';
+  async function getProfile() {
+    const response: AxiosResponse = await axios.get(
+      'http://localhost:8000/user/profile/get'
+    );
+
+    if (response.status === 200) {
+      const data = response.data;
+
+      const extractedData = data.map(
+        (item: { email: string; username: string; account_type: number }) => ({
+          email: item.email,
+          username: item.username,
+          accountType: item.account_type
+        })
+      );
+
+      if (extractedData.length > 0) {
+        setGetData({
+          email: extractedData[0].email,
+          username: extractedData[0].username,
+          accountType: extractedData[0].accountType
+        });
+      }
+    } else {
+      toast.error('Erro ao carregar perfil.');
+    }
   }
 
-  const handleInputChange = (
+  useEffect(() => {
+    themeChange(false);
+    getProfile();
+  }, []);
+
+  const [userFormData, setUserFormData] = useState({
+    username: getData.username,
+    about: '',
+    firstName: '',
+    lastName: '',
+    email: getData.email,
+    country: Profile.country[0].value,
+    language: Profile.language[0].value
+  });
+
+  const [freelancerFormData, setFreelancerFormData] = useState({
+    competence: Profile.competencie[0].value,
+    planguage: Profile.programmingLanguage[0].value,
+    framework: Profile.framework[0].value,
+    experience: Profile.experience[0].value
+  });
+
+  const handleUserFormChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setUserFormData({ ...userFormData, [name]: value });
   };
 
-  const getProfile = async () => {
-    const response: AxiosResponse = await axios.get(
-      'http://localhost:8000/user/profile/get/'
-    );
-    setGetData(response.data);
-    setGetAccountType(response.data.account_type);
+  const handleFreelancerFormChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFreelancerFormData({ ...freelancerFormData, [name]: value });
   };
 
-  const [redirect, setRedirect] = useState('');
-
-  async function updateProfile() {
+  const updateProfile = async () => {
     try {
+      let formData: FormData;
+
+      if (getData.accountType === 1) {
+        formData = {
+          ...userFormData,
+          ...freelancerFormData
+        };
+      } else {
+        formData = {
+          ...userFormData
+        };
+      }
+
       const response: AxiosResponse = await axios.post(
-        `http://localhost:8000/user/profile/update`,
+        'http://localhost:8000/user/profile/update',
         formData
       );
 
@@ -78,7 +127,7 @@ export default function ProfileSetup() {
 
         return success as string;
       } else {
-        throw new Error('Erro ao fazer login.');
+        throw new Error('Erro ao atualizar perfil.');
       }
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -97,7 +146,7 @@ export default function ProfileSetup() {
         }
       }
     }
-  }
+  };
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -120,9 +169,6 @@ export default function ProfileSetup() {
   }
 
   useEffect(() => {
-    themeChange(false);
-    getProfile();
-
     if (redirect && redirect !== '') {
       const redirectTimer = setTimeout(() => {
         router.push(redirect);
@@ -156,7 +202,6 @@ export default function ProfileSetup() {
                   type="text"
                   name="username"
                   value={getData.username}
-                  onChange={handleInputChange}
                   className="input input-md bg-base-200 w-full"
                   disabled
                 />
@@ -174,9 +219,10 @@ export default function ProfileSetup() {
                 <textarea
                   name="about"
                   rows={3}
-                  value={formData.about}
-                  onChange={handleInputChange}
                   className="textarea textarea-md bg-base-200 w-full sm:text-sm sm:leading-6"
+                  value={userFormData.about}
+                  onChange={handleUserFormChange}
+                  required
                 />
                 <label htmlFor="username" className="label">
                   <span className="label-text text-xs">
@@ -200,9 +246,10 @@ export default function ProfileSetup() {
                 <input
                   type="text"
                   name="firstName"
-                  value={formData.firstName}
-                  onChange={handleInputChange}
                   className="input input-md bg-base-200 w-full"
+                  value={userFormData.firstName}
+                  onChange={handleUserFormChange}
+                  required
                 />
               </div>
               <div className="sm:col-span-3">
@@ -212,9 +259,10 @@ export default function ProfileSetup() {
                 <input
                   type="text"
                   name="lastName"
-                  value={formData.lastName}
-                  onChange={handleInputChange}
                   className="input input-md bg-base-200 w-full"
+                  value={userFormData.lastName}
+                  onChange={handleUserFormChange}
+                  required
                 />
               </div>
               <div className="sm:col-span-4">
@@ -225,7 +273,6 @@ export default function ProfileSetup() {
                   type="email"
                   name="email"
                   value={getData.email}
-                  onChange={handleInputChange}
                   className="input input-md bg-base-200 w-full"
                   disabled
                 />
@@ -237,8 +284,9 @@ export default function ProfileSetup() {
                 <select
                   name="country"
                   className="select select-md bg-base-200 w-full max-w-xs"
-                  value={formData.country}
-                  onChange={handleInputChange}
+                  value={userFormData.country}
+                  onChange={handleUserFormChange}
+                  required
                 >
                   <option disabled>Escolha seu país</option>
                   {Profile.country.map((item, index) => (
@@ -255,8 +303,9 @@ export default function ProfileSetup() {
                 <select
                   name="language"
                   className="select select-md bg-base-200 w-full max-w-xs"
-                  value={formData.language}
-                  onChange={handleInputChange}
+                  value={userFormData.language}
+                  onChange={handleUserFormChange}
+                  required
                 >
                   <option disabled>Escolha seu idioma</option>
                   {Profile.language.map((item, index) => (
@@ -268,7 +317,7 @@ export default function ProfileSetup() {
               </div>
             </div>
           </div>
-          {getAccountType === 1 ? (
+          {getData.accountType === 1 ? (
             <>
               <div className="divider"></div>
               <div>
@@ -286,11 +335,10 @@ export default function ProfileSetup() {
                     <select
                       name="experience"
                       className="select select-md bg-base-200 w-full max-w-xs"
-                      defaultValue={'DEFAULT'}
+                      value={freelancerFormData.experience}
+                      onChange={handleFreelancerFormChange}
                     >
-                      <option disabled value={'DEFAULT'}>
-                        Escolha sua experiência
-                      </option>
+                      <option disabled>Escolha sua experiência</option>
                       {Profile.experience.map((item, index) => (
                         <option key={index} value={item.value}>
                           {item.name}
@@ -305,11 +353,12 @@ export default function ProfileSetup() {
                       </span>
                     </label>
                     <select
-                      name="programmingLanguage"
+                      name="planguage"
                       className="select select-md bg-base-200 w-full max-w-xs"
-                      defaultValue={'DEFAULT'}
+                      value={freelancerFormData.planguage}
+                      onChange={handleFreelancerFormChange}
                     >
-                      <option disabled value={'DEFAULT'}>
+                      <option disabled>
                         Escolha sua linguagem de programação
                       </option>
                       {Profile.programmingLanguage.map((item, index) => (
@@ -326,11 +375,10 @@ export default function ProfileSetup() {
                     <select
                       name="framework"
                       className="select select-md bg-base-200 w-full max-w-xs"
-                      defaultValue={'DEFAULT'}
+                      value={freelancerFormData.framework}
+                      onChange={handleFreelancerFormChange}
                     >
-                      <option disabled value={'DEFAULT'}>
-                        Escolha seu framework
-                      </option>
+                      <option disabled>Escolha seu framework</option>
                       {Profile.framework.map((item, index) => (
                         <option key={index} value={item.value}>
                           {item.name}
@@ -345,7 +393,8 @@ export default function ProfileSetup() {
                     <select
                       name="competence"
                       className="select select-md bg-base-200 w-full max-w-xs"
-                      defaultValue={'DEFAULT'}
+                      value={freelancerFormData.competence}
+                      onChange={handleFreelancerFormChange}
                     >
                       <option disabled value={'DEFAULT'}>
                         Escolha sua competência
@@ -356,42 +405,6 @@ export default function ProfileSetup() {
                         </option>
                       ))}
                     </select>
-                  </div>
-                </div>
-              </div>
-              <div className="divider"></div>
-              <div>
-                <h2 className="font-semibold font-poppins">Links sociais</h2>
-                <p className="mt-2 text-sm">
-                  Divulgue o seu trabalho pela plataforma.
-                </p>
-                <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                  <div className="sm:col-span-3">
-                    <label htmlFor="" className="label">
-                      <span className="label-text">LinkedIn</span>
-                    </label>
-                    <input
-                      type="text"
-                      className="input input-md bg-base-200 w-full"
-                    />
-                  </div>
-                  <div className="sm:col-span-3">
-                    <label htmlFor="" className="label">
-                      <span className="label-text">Github</span>
-                    </label>
-                    <input
-                      type="text"
-                      className="input input-md bg-base-200 w-full"
-                    />
-                  </div>
-                  <div className="sm:col-span-3">
-                    <label htmlFor="" className="label">
-                      <span className="label-text">Codepen</span>
-                    </label>
-                    <input
-                      type="text"
-                      className="input input-md bg-base-200 w-full"
-                    />
                   </div>
                 </div>
               </div>
@@ -408,23 +421,6 @@ export default function ProfileSetup() {
           </button>
         </div>
       </form>
-      {/* Modal pra alterar foto */}
-      <dialog id="modal" className="modal">
-        <div className="modal-box shadow-md">
-          <div className="max-w-xl">
-            <h1 className="text-lg font-poppins font-semibold pb-4">
-              Alterar foto de perfil
-            </h1>
-          </div>
-          <div className="modal-action">
-            <form method="dialog">
-              <button className="btn btn-primary btn-sm rounded-full font-inter">
-                Voltar
-              </button>
-            </form>
-          </div>
-        </div>
-      </dialog>
     </>
   );
 }
