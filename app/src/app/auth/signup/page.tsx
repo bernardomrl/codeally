@@ -24,7 +24,7 @@ export default function SignUp() {
     const { name, value, type } = e.target;
 
     if (type === 'radio') {
-      setFormData({ ...formData, [name]: parseInt(value, 10) }); // Convert the value to an integer
+      setFormData({ ...formData, [name]: parseInt(value, 10) });
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -168,6 +168,7 @@ export default function SignUp() {
               <button
                 className="absolute inset-y-0 right-0 flex items-center p-3 btn btn-ghost"
                 type="button"
+                tabIndex={-1}
                 onClick={togglePasswordVisibility}
               >
                 {isPasswordVisible ? (
