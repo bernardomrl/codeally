@@ -42,19 +42,11 @@ export default function ProfileSetup() {
     if (response.status === 200) {
       const data = response.data;
 
-      const extractedData = data.map(
-        (item: { email: string; username: string; account_type: number }) => ({
-          email: item.email,
-          username: item.username,
-          accountType: item.account_type
-        })
-      );
-
-      if (extractedData.length > 0) {
+      if (data.length > 0) {
         setGetData({
-          email: extractedData[0].email,
-          username: extractedData[0].username,
-          accountType: extractedData[0].accountType
+          email: data[0].email,
+          username: data[0].username,
+          accountType: data[0].account_type
         });
       }
     } else {
