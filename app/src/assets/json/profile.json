@@ -23,10 +23,10 @@
         { "name": "Flask", "value": "flask" }
     ],
     "competencie": [
-        { "name": "Desenvolvedor Front-End", "value": "frontend-developer" },
-        { "name": "Desenvolvedor Back-End", "value": "backend-developer" },
-        { "name": "Desenvolvedor Full-Stack", "value": "fullstack-developer" },
-        { "name": "Desenvolvedor Mobile", "value": "mobile-developer" }
+        { "name": "Desenvolvedor Front-End", "value": "Desenvolvedor-FrontEnd" },
+        { "name": "Desenvolvedor Back-End", "value": "Desenvolvedor-BackEnd" },
+        { "name": "Desenvolvedor Full-Stack", "value": "Desenvolvedor-FullStack" },
+        { "name": "Desenvolvedor Mobile", "value": "Desenvolvedor-Mobile" }
     ],
     "language": [
         { "name": "Português", "value": "portuguese" },
