@@ -17,7 +17,7 @@ export default function Hero() {
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <a
               href="#"
-              className="btn btn-md normal-case btn-primary rounded-full"
+              className="btn btn-md normal-case btn-primary text-white rounded-full"
             >
               Começar agora
             </a>

@@ -105,7 +105,9 @@ export default function Pricing() {
             <div className="flex-shrink-0 pt-4">
               <button
                 className={`btn btn-md w-full rounded-full font-inter ${
-                  plan.name === 'Profissional' ? 'btn-primary' : 'btn-ghost'
+                  plan.name === 'Profissional'
+                    ? 'btn-primary text-white'
+                    : 'btn-ghost'
                 }`}
               >
                 Assinar {plan.name}

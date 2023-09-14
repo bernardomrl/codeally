@@ -92,7 +92,7 @@ export default function Header() {
             </li>
             <li>
               <a data-set-theme="winter" className="font-inter font-medium">
-                <div className="badge badge-neutral badge-xs rounded-full mr-2"></div>
+                <div className="badge badge-error badge-xs rounded-full mr-2"></div>
                 Winter
               </a>
             </li>
