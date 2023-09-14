@@ -76,7 +76,7 @@ export default class PasswordReset {
                     'Se você não requisitou a redefinição da senha, apenas ignore este e-mail.'
                 ],
                 button: [
-                    `http://localhost:3000/forgot-password/confirm?token=${token}`,
+                    `http://localhost:3000/auth/forgot-password/confirm?token=${token}`,
                     'Redefinir senha'
                 ]
             });
@@ -97,7 +97,7 @@ export default class PasswordReset {
             return;
         }
 
-        const uuid = extractValueFromToken(this.token, 'uuid');
+        const uuid = await extractValueFromToken(this.token, 'uuid');
 
         if (!uuid) {
             res.status(400).json({ error: 'Token inválido.' });
@@ -138,7 +138,7 @@ export default class PasswordReset {
                     'Se não foi você que alterou a senha, recomendamos entrar imediatamente na sua conta.'
                 ],
                 button: [
-                    'http://localhost:3000/auth/login',
+                    'http://localhost:3000/auth/signin',
                     'Abrir Website'
                 ]
             });
