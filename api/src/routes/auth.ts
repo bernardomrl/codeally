@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';    // Express Modules
 import { Login, Register, PasswordReset } from '@/controllers/auth';
+import { tokenMiddleware } from '@/utils/jwt';
 
 const authRouter = Router();
 
@@ -27,5 +28,12 @@ authRouter.post('/auth/password-reset/confirm', async (req: Request, res: Respon
     const { password, passwordConfirm } = req.body;
     await new PasswordReset(undefined, token, password, passwordConfirm).perform(res);
 });
+
+// * Logout Route
+authRouter.get('/auth/logout', tokenMiddleware, async(req: Request, res: Response) => {
+    res.clearCookie('access');
+    res.clearCookie('refresh');
+    res.status(200).json({ 'success': 'Logout realizado com sucesso.' }); 
+})
 
 export default authRouter;
