@@ -35,11 +35,12 @@ export default class Register {
                 .test('hasNumber', 'A senha deve ter pelo menos um número.', (value?: string) => typeof value === 'string' ? /[\d]/.test(value) : false)
                 .test('hasSpecialChar', 'A senha deve conter pelo menos um caratere especial.', (value?: string) => typeof value === 'string' ? /\W/.test(value) : false)
                 .test('hasUppercase', 'A senha deve conter pelo menos uma letra maiúscula.', (value?: string) => typeof value === 'string' ? /[A-Z]/.test(value) : false)
-                .required('A senha é obrigatória.')
+                .required('A senha é obrigatória.'),
+            accountType: yup.number().required('O tipo de conta é obrigatório.')
         });
 
         try {
-            await schema.validate({ email: this.email, username: this.username, password: this.password }, { abortEarly: true });
+            await schema.validate({ email: this.email, username: this.username, password: this.password, accountType: this.accountType }, { abortEarly: true });
             return null;
         } catch (error) {
             if (error instanceof yup.ValidationError) {
