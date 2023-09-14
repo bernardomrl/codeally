@@ -80,8 +80,8 @@ export default function Header() {
               tabIndex={0}
               className="menu menu-md dropdown-content mx-2 my-5 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
             >
-              <li className="menu-title font-medium">
-                👋 Olá! <span className="font-bold">{getData.firstName}</span>
+              <li className="menu-title font-bold">
+                👋 Olá {getData.firstName}!
               </li>
               <li>
                 <a href="/profile" className="font-inter font-medium text-md">
