@@ -21,7 +21,7 @@ export default function SignIn() {
   async function sendEmailRequest() {
     try {
       const response: AxiosResponse = await axios.post(
-        'http://localhost:8000/auth/reset-password',
+        'http://localhost:8000/auth/password-reset',
         formData
       );
 
