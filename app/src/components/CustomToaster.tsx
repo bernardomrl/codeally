@@ -10,7 +10,7 @@ export default function CustomToaster() {
         <Transition
           appear
           show={t.visible}
-          className="alert w-full max-w-full md:max-w-xs lg:max-w-xs flex flex-row rounded-lg"
+          className="alert w-full max-w-full md:max-w-xs lg:max-w-xs flex flex-row rounded-lg shadow-md"
           enter="transform transition duration-150 ease-out"
           enterFrom="opacity-0 translate-y-[-20px]"
           enterTo="opacity-100 translate-y-0"
