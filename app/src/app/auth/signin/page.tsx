@@ -105,7 +105,7 @@ export default function SignIn() {
       <CustomToaster />
       <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-col">
         <Link
-          href="#"
+          href="/"
           className="btn btn-ghost normal-case text-xl font-poppins font-bold self-center"
         >
           <span>
