@@ -17,6 +17,11 @@ userRouter.get('/user/profile/get/', tokenMiddleware, async (req: Request, res: 
     await new GetUser(token).get(res);
 });
 
+userRouter.get('/user/profile/getall', tokenMiddleware, async (req: Request, res: Response) => {
+    const token = req.cookies.access as string;
+    await new GetUser(token).getAll(res);
+})
+
 // * Update User Profile
 userRouter.post('/user/profile/update', tokenMiddleware, async (req: Request, res: Response) => {
     const token = req.cookies.access as string;    
