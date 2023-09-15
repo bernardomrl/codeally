@@ -64,4 +64,22 @@ export default class GetUser {
             res.status(500).json({ error: 'Erro interno no servidor.' });
         }
     }
+
+    public async getAll(res: Response): Promise<void> {
+        try {
+            const connection = await connectDatabase();
+            const uuid = this.token ? await extractValueFromToken(this.token, 'uuid') : undefined;
+
+            if (!uuid) {
+                res.status(400).json({ error: 'Requisição inválida.' });
+            }
+
+            const [rows] = await connection.execute(`SELECT * FROM user_profile JOIN user_account ON user_profile.uuid = user_account.uuid WHERE user_account.account_type = 1;`);
+
+            res.status(200).json(rows);
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ error: 'Erro interno no servidor.' });
+        }
+    }
 }
